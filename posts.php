@@ -16,7 +16,7 @@ if( $the_query->have_posts() ) :
         $language2 = get_field('language2');
         $language3 = get_field('language3');
         $primary_development_category = get_field('primary_development_category');
-        $primary_project_type = get_field('primary_project_type');
+        $primary_project_category = get_field('primary_project_category');
         $card_summary = get_field('card_summary');  
 ?>
 
@@ -24,14 +24,9 @@ if( $the_query->have_posts() ) :
         <div class="col-md-6 col--pad">
             <div class="card">
                 <div class="card__mat">
-                    <div class="card__img-wrapper">
-                        <!-- Display Primary Image -->
-                        <?php if( $primary_image && is_array( $primary_image ) ) : ?>
-                            <img src="<?php echo esc_url( $primary_image['url'] ); ?>" alt="<?php echo esc_attr( $primary_image['alt'] ); ?>">
-                        <?php else : ?>
-                            <p>No image available</p>
-                        <?php endif; ?>
-
+                    <div class="card__img-wrapper"
+                        style="background-image: url(<?php echo esc_url( $primary_image['url'] ); ?>);">
+                    
                         <div class="card__title-box">
                             <!-- Display Project Title or fallback to post title -->
                             <?php if ($project_title) : ?>
@@ -68,12 +63,12 @@ if( $the_query->have_posts() ) :
                     <div class="card__category-wrapper">
                         <!-- Display Development Category -->
                         <?php if ($primary_development_category) : ?>
-                            <p><strong>Category:</strong> <?php echo esc_html($primary_development_category); ?></p>
+                            <h4 class="card__development">Category:<?php echo esc_html($primary_development_category); ?></h4>
                         <?php endif; ?>
 
-                        <!-- Display Project Type -->
-                        <?php if ($primary_project_type) : ?>
-                            <p><strong>Type:</strong> <?php echo esc_html($primary_project_type); ?></p>
+                        <!-- Display Project Category -->
+                        <?php if ($primary_project_category) : ?>
+                            <h4 class="card__project">Type: <?php echo esc_html($primary_project_category); ?></h4>
                         <?php endif; ?>
                     </div>
 
