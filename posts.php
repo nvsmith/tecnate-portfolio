@@ -19,6 +19,16 @@ if( $the_query->have_posts() ) :
         $primary_project_category = get_field('primary_project_category');
         $card_summary = get_field('card_summary');  
 
+        // Icon Mapping: 'ACF Choice Value' => 'Icon Name ("portfolio" + SVG symbol ID)'
+
+        // Define the icon mapping for primary role
+        $role_icons = [
+            'Front-end Developer' => 'portfoliofrontend-developer',
+            'Back-end Developer' => 'portfoliobackend-developer',
+            'Full-stack Developer' => 'portfoliofullstack-developer',
+            'Consultant' => 'portfolioconsultant',
+            'UI/UX Designer' => 'portfolioui-ux-designer'
+        ];
         // Define the icon mapping for languages
         $language_icons = [
             'HTML' => 'portfoliohtml',
@@ -46,11 +56,12 @@ if( $the_query->have_posts() ) :
                                     <h5><?php the_title(); ?></h5> <!-- Fallback to post title -->
                                 <?php endif; ?>
                                 
+                                <!-- Display Primary Role Icon -->
                                 <div class="card__icons-top">
-                                    <!-- Display Primary Role -->
-                                    <?php if ($primary_role) : ?>
-                                        <p><strong>Role:</strong> <?php echo esc_html($primary_role); ?></p>
+                                    <?php if (isset($role_icons[$primary_role])) : ?>
+                                        <svg class="ct-fancy-icon card__role-icon"><use xlink:href="#<?php echo esc_attr($role_icons[$primary_role]); ?>"><use></svg>
                                     <?php endif; ?>
+                                    
     
                                     <!-- Display Primary Technology -->
                                     <?php if ($primary_technology) : ?>
@@ -63,7 +74,7 @@ if( $the_query->have_posts() ) :
                             <div class="card__icons-btm">
                                 <?php foreach ([$language1, $language2, $language3] as $language) :
                                     if ($language && array_key_exists($language, $language_icons)) : ?>
-                                        <svg class="ct-fancy-icon"><use xlink:href="#<?php echo esc_attr($language_icons[$language]); ?>"></use></svg>
+                                        <svg class="ct-fancy-icon card__language-icon"><use xlink:href="#<?php echo esc_attr($language_icons[$language]); ?>"></use></svg>
                                     <?php endif;
                                 endforeach; ?>
                             </div>

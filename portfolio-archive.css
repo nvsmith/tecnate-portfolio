@@ -60,6 +60,15 @@
     gap: 5px;
 }
 
+.card__language-icon {
+    background-color: #883343;
+    height: 38px;
+    width: 38px;
+    border: 1px solid #e67edf;
+    padding: 2px;
+    border-radius: 100%;
+}
+
 .card__category-wrapper {
     border: 2px solid red;
     padding: 10px;
