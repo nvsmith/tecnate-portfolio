@@ -26,7 +26,7 @@ if( $the_query->have_posts() ) :
             'CSS' => 'portfoliocss',
             'JavaScript' => 'portfoliojavascript',
             'PHP' => 'portfoliophp',
-            'C++' => 'portfoliocplus',
+            'C++' => 'portfoliocplusplus',
             'Bash' => 'portfoliobash'
         ];?>
 
@@ -59,16 +59,15 @@ if( $the_query->have_posts() ) :
                                 </div>
                             </div>
     
+                            <!-- Display language icons -->
                             <div class="card__icons-btm">
-                                <!-- Display Programming Languages with Icons -->
-                                <?php if ($language1 || $language2 || $language3) : ?>
-                                    <p><strong>Languages:</strong>
-                                        <?php echo esc_html($language1 ? $language1 : ''); ?>
-                                        <?php echo esc_html($language2 ? ', ' . $language2 : ''); ?>
-                                        <?php echo esc_html($language3 ? ', ' . $language3 : ''); ?>
-                                    </p>
-                                <?php endif; ?>
+                                <?php foreach ([$language1, $language2, $language3] as $language) :
+                                    if ($language && array_key_exists($language, $language_icons)) : ?>
+                                        <svg class="ct-fancy-icon"><use xlink:href="#<?php echo esc_attr($language_icons[$language]); ?>"></use></svg>
+                                    <?php endif;
+                                endforeach; ?>
                             </div>
+
                         </div>
     
                         <div class="card__category-wrapper">
