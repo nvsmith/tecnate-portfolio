@@ -27,7 +27,7 @@
     border: 2px solid green;
     border-radius: 50px 50px 0 0;
     height: 95%;
-    overflow: hidden; /* Ensures content stays within the wrapper */
+    overflow: hidden;
 }
 
 .card__img-wrapper {
