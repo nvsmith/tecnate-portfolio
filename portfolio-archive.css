@@ -61,7 +61,7 @@
 }
 
 .card__language-icon {
-    background-color: #883343;
+    background-color: rgba(136, 51, 67, 0.75);
     height: 38px;
     width: 38px;
     border: 1px solid #e67edf;

@@ -29,6 +29,20 @@ if( $the_query->have_posts() ) :
             'Consultant' => 'portfolioconsultant',
             'UI/UX Designer' => 'portfolioui-ux-designer'
         ];
+
+        // Define the icon mapping for primary technology
+        $technology_icons = [
+            'Bootstrap' => 'portfoliobootstrap',
+            'jQuery' => 'portfoliojquery',
+            'React' => 'portfolioreact',
+            'Node.js' => 'portfolionodejs',
+            'WordPress' => 'portfoliowordpress',
+            'WooCommerce' => 'portfoliowoocommerce',
+            'API' => 'portfolioapi',
+            'MySQL' => 'portfoliomysql',
+            'Git' => 'portfoliogit'
+        ];
+
         // Define the icon mapping for languages
         $language_icons = [
             'HTML' => 'portfoliohtml',
@@ -63,10 +77,11 @@ if( $the_query->have_posts() ) :
                                     <?php endif; ?>
                                     
     
-                                    <!-- Display Primary Technology -->
-                                    <?php if ($primary_technology) : ?>
-                                        <p><strong>Technology:</strong> <?php echo esc_html($primary_technology); ?></p>
+                                    <!-- Display Primary Technology Icon -->
+                                    <?php if (isset($technology_icons[$primary_technology])) : ?>
+                                        <svg class="ct-fancy-icon card__technology-icon"><use xlink:href="#<?php echo esc_attr($technology_icons[$primary_technology]); ?>"></use></svg>
                                     <?php endif; ?>
+                                    
                                 </div>
                             </div>
     
