@@ -62,34 +62,34 @@ if( $the_query->have_posts() ) :
                         <div class="card__img-wrapper"
                             style="background-image: url(<?php echo esc_url( $primary_image['url'] ); ?>);">
                         
-                            <div class="card__title-box">
-                                <!-- Display Project Title or fallback to post title -->
-                                <?php if ($project_title) : ?>
-                                    <h5><?php echo esc_html($project_title); ?></h5>
-                                <?php else : ?>
-                                    <h5><?php the_title(); ?></h5> <!-- Fallback to post title -->
-                                <?php endif; ?>
-                                
-                                <!-- Display Primary Role Icon -->
-                                <div class="card__icons-top">
+                            <div class="card__title-container">
+                                <div class="card__role-wrapper">
+                                    <!-- Display Primary Role Icon -->
                                     <?php if (isset($role_icons[$primary_role])) : ?>
                                         <svg class="ct-fancy-icon card__role-icon"><use xlink:href="#<?php echo esc_attr($role_icons[$primary_role]); ?>"><use></svg>
                                     <?php endif; ?>
-                                    
-    
+                                </div>
+
+                                <div class="card__title-wrapper">
+                                    <!-- Display Project Title or fallback to post title -->
+                                    <h5><?php echo esc_html($project_title ? $project_title : get_the_title()); ?></h5>
+                                </div>
+
+                                <div class="card__technology-wrapper">
                                     <!-- Display Primary Technology Icon -->
                                     <?php if (isset($technology_icons[$primary_technology])) : ?>
                                         <svg class="ct-fancy-icon card__technology-icon"><use xlink:href="#<?php echo esc_attr($technology_icons[$primary_technology]); ?>"></use></svg>
                                     <?php endif; ?>
-                                    
                                 </div>
                             </div>
     
-                            <!-- Display language icons -->
-                            <div class="card__icons-btm">
+                            <div class="card__language-container">
+                                <!-- Display language icons -->
                                 <?php foreach ([$language1, $language2, $language3] as $language) :
                                     if ($language && array_key_exists($language, $language_icons)) : ?>
+                                    <div class="card__language-icon-wrapper">
                                         <svg class="ct-fancy-icon card__language-icon"><use xlink:href="#<?php echo esc_attr($language_icons[$language]); ?>"></use></svg>
+                                    </div>
                                     <?php endif;
                                 endforeach; ?>
                             </div>

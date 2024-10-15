@@ -39,19 +39,43 @@
     background-repeat: no-repeat;
 }
 
-.card__title-box {
-    position: absolute;
-    background-color: rgba(0, 128, 0, 0.7);
-    padding: 10px;
-    border-radius: 5px;
+.card__title-container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 1fr;
 }
 
-.card__icons-top {
-    margin-top: 10px;
-    background-color: yellow;
+.card__title-wrapper {
+    background-color: sienna;
 }
 
-.card__icons-btm {
+.card__role-wrapper {
+    background-color: paleturquoise;
+}
+
+.card__technology-wrapper {
+    background-color: pink;
+}
+
+.card__role-icon {
+    background-color: rgba(136, 51, 67, 0.75);
+    height: 38px;
+    width: 38px;
+    border: 1px solid #e67edf;
+    padding: 2px;
+    border-radius: 100%;
+}
+
+.card__technology-icon {
+    background-color: rgba(136, 51, 67, 0.75);
+    height: 38px;
+    width: 38px;
+    border: 1px solid #e67edf;
+    padding: 2px;
+    border-radius: 100%;
+}
+
+.card__language-container {
     position: absolute;
     bottom: 10px;
     right: 10px;
