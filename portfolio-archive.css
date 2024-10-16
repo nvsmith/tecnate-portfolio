@@ -6,12 +6,9 @@
     --magenta-haze: 159, 47, 107;
 }
 
+/*** Main Card Layout ***/
 .card {
     background-color: rgba(var(--rich-black));
-    padding: 1rem;
-    border-radius: 50px;
-    height: 600px;
-    overflow: hidden;
 }
 
 .card__mat {
@@ -22,83 +19,59 @@
     height: 100%;
 }
 
-.card__content-wrapper {
-    background-color: aliceblue;
-    border: 2px solid green;
-    border-radius: 50px 50px 0 0;
-    height: 95%;
+.card__body {
+    background-color: rgba(var(--indigo-dye));
+    padding: 1.5rem;
+    border-radius: 50px;
+    border: 5px solid rgba(var(--magenta-haze));
+    height: 600px;
+}
+
+/*** Card Base Sections ***/
+
+.card-hero {
+    background-color: aqua;
+    width: 100%;
     overflow: hidden;
 }
 
-.card__img-wrapper {
-    position: relative;
+.card-hero__img {
     width: 100%;
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    object-fit: cover;
 }
 
-.card__title-container {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    grid-template-columns: auto 1fr;
+.card-summary {
+    background-color: chocolate;
 }
 
-.card__title-wrapper {
-    background-color: sienna;
+.card-footer {
+    background-color: darkorchid;
 }
 
-.card__role-wrapper {
-    background-color: paleturquoise;
+/*** Card Overlay Sections ***/
+
+.overlay__title-container {
+    background-color: gold;
 }
 
-.card__technology-wrapper {
-    background-color: pink;
+.overlay__language-container {
+    background-color: indianred;
 }
 
-.card__role-icon {
-    background-color: rgba(136, 51, 67, 0.75);
-    height: 38px;
-    width: 38px;
-    border: 1px solid #e67edf;
-    padding: 2px;
-    border-radius: 100%;
+.overlay__category-container {
+    background-color: lightpink;
 }
 
-.card__technology-icon {
-    background-color: rgba(136, 51, 67, 0.75);
-    height: 38px;
-    width: 38px;
-    border: 1px solid #e67edf;
-    padding: 2px;
-    border-radius: 100%;
+/*** Card Icons ***/
+
+.card-icon__wrapper {
+    border: 3px solid red;
+    background-color: slateblue;
 }
 
-.card__language-container {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.card__language-icon {
-    background-color: rgba(136, 51, 67, 0.75);
-    height: 38px;
-    width: 38px;
-    border: 1px solid #e67edf;
-    padding: 2px;
-    border-radius: 100%;
-}
-
-.card__category-wrapper {
-    border: 2px solid red;
-    padding: 10px;
-}
-
-.card__summary-wrapper {
-    padding: 10px;
-    background-color: #4876eb;
+.card-icon {
+    border: 1px solid green;
+    background-color: peachpuff;
+    height: 50px;
+    width: 50px;
 }
