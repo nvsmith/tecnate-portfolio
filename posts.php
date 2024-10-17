@@ -59,11 +59,11 @@ if( $the_query->have_posts() ) :
             <div class="card">
                 <div class="card__mat">
                     <div class="card__body">
-                        <div class="card-hero">
-                            <!-- Display Primary Image -->
-                            <?php if ($primary_image) : ?>
-                                <img src="<?php echo esc_url($primary_image['url']); ?>" alt="<?php echo esc_attr($project_title); ?>" class="card-hero__img">
-                            <?php endif; ?>
+
+                        <!-- Begin Base Sections -->
+                        
+                        <!-- Display Primary Image -->
+                        <div class="card-hero" style = "background-image: url('<?php echo esc_url($primary_image['url']); ?>')">
                         </div> <!-- end card-hero -->
                         
                         <div class="card-summary">
@@ -81,8 +81,10 @@ if( $the_query->have_posts() ) :
                             echo '<p class="card-footer__date">Published: ' . esc_html($post_date) . '</p>';
                             ?>
                         </div> <!-- end card-footer -->
+                        <!-- End Base Sections -->
 
-                        <div class="overlay__title-container">
+                        <!-- Begin Overlay Sections -->
+                        <div class="card-overlay card-overlay__title-container">
                             <div class="card-icon__wrapper card-icon__wrapper--role">
                                 <!-- Display Primary Role Icon -->
                                 <?php if (isset($role_icons[$primary_role])) : ?>
@@ -103,7 +105,7 @@ if( $the_query->have_posts() ) :
                             </div>
                         </div> <!-- end overlay__title-container -->
 
-                        <div class="overlay__language-container">
+                        <div class="card-overlay card-overlay__language-container">
                             <!-- Display language icons -->
                             <?php foreach ([$language1, $language2, $language3] as $language) :
                                 if ($language && array_key_exists($language, $language_icons)) : ?>
@@ -114,7 +116,7 @@ if( $the_query->have_posts() ) :
                             endforeach; ?>
                         </div> <!-- end overlay__language-container -->
 
-                        <div class="overlay__category-container">
+                        <div class="card-overlay card-overlay__category-container">
                             <!-- Display Development Category -->
                             <?php if ($primary_development_category) : ?>
                                 <h4 class="card__development">Category: <span><?php echo esc_html($primary_development_category); ?></span></h4>
@@ -125,6 +127,7 @@ if( $the_query->have_posts() ) :
                                 <h4 class="card__project">Type: <span><?php echo esc_html($primary_project_category); ?></span></h4>
                             <?php endif; ?>
                         </div> <!-- end overlay__category-container -->
+                        <!-- End Overlay Sections -->
                     </div> <!-- end card__body -->
                 </div> <!-- end card__mat -->
             </div> <!-- end card -->

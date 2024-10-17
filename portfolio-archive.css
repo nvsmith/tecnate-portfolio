@@ -9,57 +9,70 @@
 /*** Main Card Layout ***/
 .card {
     background-color: rgba(var(--rich-black));
+    height: 600px;
+    width: 400px;
+    padding: 8px;
+    border: 2px solid blue;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .card__mat {
-    background-color: rgba(var(--silver-chalice));
-    padding: 0.5rem;
+    background-color: burlywood;
+    padding: 8px;
+    border: 2px solid blue;
     border-radius: 50px;
-    border: 5px solid rgba(var(--magenta-haze));
-    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 98%;
+    width: 100%;
 }
 
 .card__body {
-    background-color: rgba(var(--indigo-dye));
-    padding: 1.5rem;
+    background-color: cadetblue;
+    padding: 8px;
+    border: 2px solid blue;
     border-radius: 50px;
-    border: 5px solid rgba(var(--magenta-haze));
-    height: 600px;
+    overflow: hidden;
+    position: relative;
+    height: 98%;
+    width: 100%;
 }
 
 /*** Card Base Sections ***/
 
 .card-hero {
-    background-color: aqua;
+    background-color: crimson;
+    border: 2px solid pink;
     width: 100%;
     overflow: hidden;
-}
-
-.card-hero__img {
-    width: 100%;
-    object-fit: cover;
+    height: 60%;
+    background-size: cover;
+    background-position: center;
 }
 
 .card-summary {
+    width: 100%;
     background-color: chocolate;
+    border: 2px solid red;
 }
 
 .card-footer {
+    width: 100%;
     background-color: darkorchid;
+    padding: 8px;
 }
 
 /*** Card Overlay Sections ***/
 
-.overlay__title-container {
-    background-color: gold;
-}
-
-.overlay__language-container {
-    background-color: indianred;
-}
-
-.overlay__category-container {
-    background-color: lightpink;
+.card-overlay {
+    background-color: darkgray;
+    border: 2px solid yellow;
+    position: absolute;
 }
 
 /*** Card Icons ***/
