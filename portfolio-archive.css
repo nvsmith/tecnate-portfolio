@@ -1,78 +1,82 @@
 :root {
-    --rich-black: 10, 10, 10;
     --indigo-dye: 3, 60, 84;
-    --silver-chalice: 173, 173, 173;
-    --middle-red: 255, 143, 112;
     --magenta-haze: 159, 47, 107;
+    --middle-red: 255, 143, 112;
+    --rich-black: 10, 10, 10;
+    --silver-chalice: 173, 173, 173;
 }
 
 /*** Main Card Layout ***/
+
+.col__card {
+    padding: 2rem 0.5rem;
+}
+
 .card {
-    background-color: rgba(var(--rich-black));
-    height: 600px;
-    width: 400px;
-    padding: 8px;
-    border: 2px solid blue;
-    border-radius: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 416px;
+    height: 624px;
     margin: 0 auto;
+    padding: 8px;
+    border: 2px solid blue;
+    border-radius: 50px;
+    background-color: rgba(var(--rich-black));
 }
 
 .card__mat {
-    background-color: burlywood;
-    padding: 8px;
-    border: 2px solid blue;
-    border-radius: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 98%;
     width: 100%;
-}
-
-.card__body {
-    background-color: cadetblue;
+    height: 98%;
     padding: 8px;
     border: 2px solid blue;
     border-radius: 50px;
-    overflow: hidden;
+    background-color: burlywood;
+}
+
+.card__body {
     position: relative;
-    height: 98%;
     width: 100%;
+    height: 98%;
+    border: 2px solid blue;
+    border-radius: 50px;
+    overflow: hidden;
+    background-color: cadetblue;
 }
 
 /*** Card Base Sections ***/
 
 .card-hero {
-    background-color: crimson;
-    border: 2px solid pink;
     width: 100%;
-    overflow: hidden;
     height: 60%;
-    background-size: cover;
+    border: 2px solid pink;
+    overflow: hidden;
+    background-color: crimson;
     background-position: center;
+    background-size: cover;
 }
 
 .card-summary {
     width: 100%;
-    background-color: chocolate;
     border: 2px solid red;
+    background-color: chocolate;
 }
 
 .card-footer {
     width: 100%;
-    background-color: darkorchid;
     padding: 8px;
+    background-color: darkorchid;
 }
 
 /*** Card Overlay Sections ***/
 
 .card-overlay {
-    background-color: darkgray;
-    border: 2px solid yellow;
     position: absolute;
+    border: 2px solid yellow;
+    background-color: darkgray;
 }
 
 /*** Card Icons ***/
@@ -83,8 +87,8 @@
 }
 
 .card-icon {
+    width: 50px;
+    height: 50px;
     border: 1px solid green;
     background-color: peachpuff;
-    height: 50px;
-    width: 50px;
 }

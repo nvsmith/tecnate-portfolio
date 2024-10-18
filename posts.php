@@ -55,7 +55,7 @@ if( $the_query->have_posts() ) :
         ];?>
 
        <!-- Render post in a 6/12 column layout until the md breakpoint -->
-       <div class="col-md-6 col--pad">
+       <div class="col-md-6 col__card">
             <div class="card">
                 <div class="card__mat">
                     <div class="card__body">
