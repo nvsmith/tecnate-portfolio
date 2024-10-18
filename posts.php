@@ -83,7 +83,9 @@ if( $the_query->have_posts() ) :
                         </div> <!-- end card-footer -->
                         <!-- End Base Sections -->
 
+                        
                         <!-- Begin Overlay Sections -->
+
                         <div class="card-overlay card-overlay__title-container">
                             <div class="card-icon__wrapper card-icon__wrapper--role">
                                 <!-- Display Primary Role Icon -->
@@ -128,6 +130,7 @@ if( $the_query->have_posts() ) :
                             <?php endif; ?>
                         </div> <!-- end overlay__category-container -->
                         <!-- End Overlay Sections -->
+
                     </div> <!-- end card__body -->
                 </div> <!-- end card__mat -->
             </div> <!-- end card -->

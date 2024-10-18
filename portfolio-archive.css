@@ -29,7 +29,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 98%;
     height: 98%;
     padding: 8px;
     border: 2px solid blue;
@@ -39,18 +39,20 @@
 
 .card__body {
     position: relative;
-    width: 100%;
+    width: 98%;
     height: 98%;
     border: 2px solid blue;
     border-radius: 50px;
-    overflow: hidden;
     background-color: cadetblue;
+}
+
+.card__body * {
+    width: 100%;
 }
 
 /*** Card Base Sections ***/
 
 .card-hero {
-    width: 100%;
     height: 60%;
     border: 2px solid pink;
     overflow: hidden;
@@ -60,15 +62,15 @@
 }
 
 .card-summary {
-    width: 100%;
     border: 2px solid red;
     background-color: chocolate;
+    height: 35%;
 }
 
 .card-footer {
-    width: 100%;
     padding: 8px;
     background-color: darkorchid;
+    height: 5%;
 }
 
 /*** Card Overlay Sections ***/
@@ -77,6 +79,26 @@
     position: absolute;
     border: 2px solid yellow;
     background-color: darkgray;
+}
+
+.card-overlay__title-container {
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: auto auto;
+    display: grid;
+    top: 0;
+    background-color: darkcyan;
+}
+
+.card-overlay__language-container {
+    display: flex;
+    right: 0;
+    bottom: 50%;
+    flex-direction: column;
+    width: auto;
+}
+
+.card-overlay__category-container {
+    top: 50%;
 }
 
 /*** Card Icons ***/
@@ -90,5 +112,6 @@
     width: 50px;
     height: 50px;
     border: 1px solid green;
+    border-radius: 50%;
     background-color: peachpuff;
 }
