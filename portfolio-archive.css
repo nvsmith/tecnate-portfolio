@@ -6,7 +6,7 @@
     --silver-chalice: 173, 173, 173;
 }
 
-/*** Main Card Layout ***/
+/***** Main Card Layout *****/
 
 .col__card {
     padding: 2rem 0.5rem;
@@ -16,8 +16,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 416px;
-    height: 624px;
+    max-width: 500px;
+    height: 625px;
     margin: 0 auto;
     padding: 8px;
     border: 2px solid blue;
@@ -35,22 +35,23 @@
     border: 2px solid blue;
     border-radius: 50px;
     background-color: burlywood;
+    position: relative;
 }
 
 .card__body {
-    position: relative;
     width: 98%;
     height: 98%;
     border: 2px solid blue;
     border-radius: 50px;
     background-color: cadetblue;
+    overflow: hidden;
 }
 
 .card__body * {
     width: 100%;
 }
 
-/*** Card Base Sections ***/
+/***** Card Base Sections *****/
 
 .card-hero {
     height: 60%;
@@ -59,6 +60,12 @@
     background-color: crimson;
     background-position: center;
     background-size: cover;
+}
+
+.card-categories {
+    height: 3rem;
+    border: 2px solid purple;
+    margin-top: -3rem;
 }
 
 .card-summary {
@@ -73,20 +80,20 @@
     height: 5%;
 }
 
-/*** Card Overlay Sections ***/
+/***** Card Overlay Sections *****/
 
 .card-overlay {
     position: absolute;
     border: 2px solid yellow;
-    background-color: darkgray;
+    background-color: rgba(166, 186, 145, 0.347);
 }
 
-.card-overlay__title-container {
-    grid-template-columns: 1fr 5fr;
-    grid-template-rows: auto auto;
-    display: grid;
+.card-overlay__role-container {
     top: 0;
-    background-color: darkcyan;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
 }
 
 .card-overlay__language-container {
@@ -94,18 +101,15 @@
     right: 0;
     bottom: 50%;
     flex-direction: column;
-    width: auto;
+    width: fit-content;
 }
 
-.card-overlay__category-container {
-    top: 50%;
-}
-
-/*** Card Icons ***/
+/***** Card Icons *****/
 
 .card-icon__wrapper {
     border: 3px solid red;
     background-color: slateblue;
+    width: fit-content;
 }
 
 .card-icon {
@@ -114,4 +118,11 @@
     border: 1px solid green;
     border-radius: 50%;
     background-color: peachpuff;
+}
+
+/***** Card Text Wrappers & Elements *****/
+
+.card-title {
+    font-size: 1rem;
+    font-weight: bold;
 }

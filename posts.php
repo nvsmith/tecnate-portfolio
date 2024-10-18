@@ -55,16 +55,30 @@ if( $the_query->have_posts() ) :
         ];?>
 
        <!-- Render post in a 6/12 column layout until the md breakpoint -->
-       <div class="col-md-6 col__card">
+       <div class="col__card col-md-6">
             <div class="card">
                 <div class="card__mat">
                     <div class="card__body">
 
-                        <!-- Begin Base Sections -->
-                        
-                        <!-- Display Primary Image -->
+                        <!-- BEGIN BASE SECTIONS -->
                         <div class="card-hero" style = "background-image: url('<?php echo esc_url($primary_image['url']); ?>')">
+                            <div class="wrapper__project-title">
+                                <!-- Display Project Title or fallback to post title -->
+                                <h2 class="card-title"><?php echo esc_html($project_title ?: get_the_title()); ?></h2>
+                            </div>
                         </div> <!-- end card-hero -->
+
+                        <div class="card-categories">
+                            <!-- Display Development Category -->
+                            <?php if ($primary_development_category) : ?>
+                                <h4 class="card__development">Category: <span><?php echo esc_html($primary_development_category); ?></span></h4>
+                            <?php endif; ?>
+    
+                            <!-- Display Project Category -->
+                            <?php if ($primary_project_category) : ?>
+                                <h4 class="card__project">Type: <span><?php echo esc_html($primary_project_category); ?></span></h4>
+                            <?php endif; ?>
+                        </div> <!-- end card-categories -->
                         
                         <div class="card-summary">
                             <!-- Display Card Summary or fallback to post excerpt -->
@@ -81,22 +95,16 @@ if( $the_query->have_posts() ) :
                             echo '<p class="card-footer__date">Published: ' . esc_html($post_date) . '</p>';
                             ?>
                         </div> <!-- end card-footer -->
-                        <!-- End Base Sections -->
+                        <!-- END BASE SECTIONS -->
 
                         
-                        <!-- Begin Overlay Sections -->
-
-                        <div class="card-overlay card-overlay__title-container">
+                        <!-- BEGIN OVERLAY SECTIONS -->
+                        <div class="card-overlay card-overlay__role-container">
                             <div class="card-icon__wrapper card-icon__wrapper--role">
                                 <!-- Display Primary Role Icon -->
                                 <?php if (isset($role_icons[$primary_role])) : ?>
                                     <svg class="card-icon card-icon--role"><use xlink:href="#<?php echo esc_attr($role_icons[$primary_role]); ?>"></use></svg>
                                 <?php endif; ?>
-                            </div>
-
-                            <div class="wrapper__title">
-                                <!-- Display Project Title or fallback to post title -->
-                                <h5><?php echo esc_html($project_title ?: get_the_title()); ?></h5>
                             </div>
 
                             <div class="card-icon__wrapper card-icon__wrapper--technology">
@@ -105,7 +113,7 @@ if( $the_query->have_posts() ) :
                                     <svg class="card-icon card-icon--technology"><use xlink:href="#<?php echo esc_attr($technology_icons[$primary_technology]); ?>"></use></svg>
                                 <?php endif; ?>
                             </div>
-                        </div> <!-- end overlay__title-container -->
+                        </div> <!-- end overlay__role-container -->
 
                         <div class="card-overlay card-overlay__language-container">
                             <!-- Display language icons -->
@@ -116,25 +124,13 @@ if( $the_query->have_posts() ) :
                                     </div>
                                 <?php endif;
                             endforeach; ?>
-                        </div> <!-- end overlay__language-container -->
-
-                        <div class="card-overlay card-overlay__category-container">
-                            <!-- Display Development Category -->
-                            <?php if ($primary_development_category) : ?>
-                                <h4 class="card__development">Category: <span><?php echo esc_html($primary_development_category); ?></span></h4>
-                            <?php endif; ?>
-    
-                            <!-- Display Project Category -->
-                            <?php if ($primary_project_category) : ?>
-                                <h4 class="card__project">Type: <span><?php echo esc_html($primary_project_category); ?></span></h4>
-                            <?php endif; ?>
-                        </div> <!-- end overlay__category-container -->
-                        <!-- End Overlay Sections -->
+                        </div> <!-- end overlay__language-container -->                        
+                        <!-- END OVERLAY SECTIONS -->
 
                     </div> <!-- end card__body -->
                 </div> <!-- end card__mat -->
             </div> <!-- end card -->
-        </div> <!-- end col-md-6 | End post rendering --> 
+        </div> <!-- end col__card | End post rendering --> 
 
     <?php
     endwhile;
