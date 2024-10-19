@@ -53,7 +53,7 @@
 
 /***** Card Base Sections *****/
 
-.card-hero {
+.card__hero {
     height: 60%;
     border: 2px solid pink;
     overflow: hidden;
@@ -62,19 +62,19 @@
     background-size: cover;
 }
 
-.card-categories {
+.card__categories {
     height: 3rem;
     margin-top: -3rem;
     border: 2px solid purple;
 }
 
-.card-summary {
+.card__summary {
     height: 35%;
     border: 2px solid red;
     background-color: chocolate;
 }
 
-.card-footer {
+.card__footer {
     height: 5%;
     padding: 8px;
     background-color: darkorchid;
@@ -82,13 +82,13 @@
 
 /***** Card Overlay Sections *****/
 
-.card-overlay {
+.card__overlay {
     position: absolute;
     border: 2px solid yellow;
     background-color: rgba(166, 186, 145, 0.347);
 }
 
-.card-overlay__role-container {
+.card__overlay--role {
     display: flex;
     top: 0;
     left: 0;
@@ -96,7 +96,7 @@
     width: fit-content;
 }
 
-.card-overlay__language-container {
+.card__overlay--languages {
     display: flex;
     right: 0;
     bottom: 50%;
@@ -106,13 +106,13 @@
 
 /***** Card Overlay Icons *****/
 
-.card-icon__wrapper {
+.card__icon-wrapper {
     width: fit-content;
     border: 3px solid red;
     background-color: slateblue;
 }
 
-.card-icon {
+.card__icon {
     width: 2.5rem;
     height: 2.5rem;
     border: 1px solid green;
@@ -120,13 +120,14 @@
     background-color: rgba(var(--rich-black));
 }
 
-.card-icon--role {
+.card__icon--role {
     width: 4.5rem;
     height: 4.5rem;
 }
 
 /***** Card Text Wrappers & Elements *****/
-.wrapper__project-title {
+
+.card__title-wrapper {
     display: flex;
     align-items: center;
     height: 3.5rem;
@@ -134,8 +135,29 @@
     background-color: rgba(var(--silver-chalice), 0.8);
 }
 
-.card-title {
+.card__title {
     padding: 0 1rem 0 4.5rem;
     font-weight: bold;
     font-size: 1rem;
+}
+
+.card__category--development,
+.card__category--project {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.card__btn a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid blue;
+    border-radius: 8px;
+    background-color: rgba(var(--middle-red));
+    color: white;
+    text-decoration: none;
+}
+
+.card__footer-date {
+    font-size: 0.8rem;
+    color: rgba(var(--silver-chalice));
 }
