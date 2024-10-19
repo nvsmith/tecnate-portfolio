@@ -56,7 +56,7 @@ if( $the_query->have_posts() ) :
 
         <!-- Render post in a 6/12 column layout until the md breakpoint -->
         <div class="col-md-6 col__card">
-            <div class="card">
+            <article class="card">
                 <div class="card__mat">
                     <div class="card__body">
 
@@ -70,16 +70,12 @@ if( $the_query->have_posts() ) :
                         <div class="card__categories">
                             <!-- Display Development Category -->
                             <?php if ($primary_development_category) : ?>
-                                <h4 class="card__category card__category--development">Category: 
-                                    <span><?php echo esc_html($primary_development_category); ?></span>
-                                </h4>
+                                <h3 class="card__category card__category--development">Category: <?php echo esc_html($primary_development_category); ?></h3>
                             <?php endif; ?>
 
                             <!-- Display Project Category -->
                             <?php if ($primary_project_category) : ?>
-                                <h4 class="card__category card__category--project">Type: 
-                                    <span><?php echo esc_html($primary_project_category); ?></span>
-                                </h4>
+                                <h3 class="card__category card__category--project">Type: <?php echo esc_html($primary_project_category); ?></h3>
                             <?php endif; ?>
                         </div> <!-- end card__categories -->
 
@@ -95,7 +91,7 @@ if( $the_query->have_posts() ) :
                         </div> <!-- end card__footer -->
                         <!-- END BASE SECTIONS -->
 
-                        <!-- BEGIN OVERLAY SECTIONS -->
+                        <!-- BEGIN OVERLAY CONTENT -->
                         <div class="card__overlay card__overlay--role">
                             <div class="card__icon-wrapper card__icon-wrapper--role">
                                 <?php if (isset($role_icons[$primary_role])) : ?>
@@ -112,7 +108,7 @@ if( $the_query->have_posts() ) :
                                     </svg>
                                 <?php endif; ?>
                             </div>
-                        </div> <!-- end card__overlay--role -->
+                        </div>
 
                         <div class="card__overlay card__overlay--languages">
                             <?php foreach ([$language1, $language2, $language3] as $language) :
@@ -124,12 +120,12 @@ if( $the_query->have_posts() ) :
                                     </div>
                                 <?php endif;
                             endforeach; ?>
-                        </div> <!-- end card__overlay--languages -->
-                        <!-- END OVERLAY SECTIONS -->
+                        </div>
+                        <!-- END OVERLAY CONTENT -->
 
                     </div> <!-- end card__body -->
                 </div> <!-- end card__mat -->
-            </div> <!-- end card -->
+            </article> <!-- end card -->
         </div> <!-- end col__card -->
 
 

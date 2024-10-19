@@ -76,11 +76,12 @@
 
 .card__footer {
     height: 5%;
-    padding: 8px;
     background-color: darkorchid;
+    display: flex;
+    align-items: center;
 }
 
-/***** Card Overlay Sections *****/
+/***** Card Overlay Content *****/
 
 .card__overlay {
     position: absolute;
@@ -138,12 +139,12 @@
 .card__title {
     padding: 0 1rem 0 4.5rem;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .card__category--development,
 .card__category--project {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: bold;
 }
 
@@ -159,5 +160,6 @@
 
 .card__footer-date {
     font-size: 0.8rem;
-    color: rgba(var(--silver-chalice));
+    padding-right: 3rem;
+    text-align: right;
 }
