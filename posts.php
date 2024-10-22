@@ -65,8 +65,17 @@ if( $the_query->have_posts() ) :
                             <div class="card__title-wrapper">
                                 <h2 class="card__title"><?php echo esc_html($project_title ?: get_the_title()); ?></h2>
                             </div>
-                        </div> <!-- end card__hero -->
 
+                            <!-- Project Button -->
+                            <a class="card__btn btn" href="<?php the_permalink(); ?>" class="">View Project</a>
+                        </div> <!-- end card__hero -->
+                        
+                        
+                        <div class="card__summary">
+                            <p><?php echo esc_html($card_summary ?: get_the_excerpt()); ?></p>
+                            
+                        </div> <!-- end card__summary -->
+                        
                         <div class="card__categories">
                             <!-- Display Development Category -->
                             <?php if ($primary_development_category) : ?>
@@ -78,13 +87,6 @@ if( $the_query->have_posts() ) :
                                 <h3 class="card__category card__category--project">Type: <?php echo esc_html($primary_project_category); ?></h3>
                             <?php endif; ?>
                         </div> <!-- end card__categories -->
-
-                        <div class="card__summary">
-                            <p><?php echo esc_html($card_summary ?: get_the_excerpt()); ?></p>
-                            <div class="card__btn">
-                                <a href="<?php the_permalink(); ?>">View Project</a>
-                            </div>
-                        </div> <!-- end card__summary -->
 
                         <div class="card__footer">
                             <time class="card__footer-date" datetime="<?php echo get_the_date('c'); ?>">Published: <?php echo get_the_date('d M Y'); ?></time>
@@ -108,7 +110,7 @@ if( $the_query->have_posts() ) :
                                     </svg>
                                 <?php endif; ?>
                             </div>
-                        </div>
+                        </div> <!-- end card__overlay--role -->
 
                         <div class="card__overlay card__overlay--languages">
                             <?php foreach ([$language1, $language2, $language3] as $language) :
@@ -120,7 +122,7 @@ if( $the_query->have_posts() ) :
                                     </div>
                                 <?php endif;
                             endforeach; ?>
-                        </div>
+                        </div> <!-- end card__overlay--languages -->
                         <!-- END OVERLAY CONTENT -->
 
                     </div> <!-- end card__body -->

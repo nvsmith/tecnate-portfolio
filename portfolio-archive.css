@@ -60,18 +60,24 @@
     background-color: crimson;
     background-position: center;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.card__categories {
-    height: 3rem;
-    margin-top: -3rem;
-    border: 2px solid purple;
+.card__btn {
 }
 
 .card__summary {
-    height: 35%;
+    height: 30%;
     border: 2px solid red;
     background-color: chocolate;
+}
+
+.card__categories {
+    background-color: bisque;
+    height: 5%;
+    font-size: 1.2rem;
 }
 
 .card__footer {
@@ -105,7 +111,7 @@
     width: fit-content;
 }
 
-/***** Card Overlay Icons *****/
+/*** Overlay Icons ***/
 
 .card__icon-wrapper {
     width: fit-content;
@@ -146,16 +152,6 @@
 .card__category--project {
     font-size: 1rem;
     font-weight: bold;
-}
-
-.card__btn a {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border: 1px solid blue;
-    border-radius: 8px;
-    background-color: rgba(var(--middle-red));
-    color: white;
-    text-decoration: none;
 }
 
 .card__footer-date {
