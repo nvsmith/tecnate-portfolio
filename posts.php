@@ -73,7 +73,6 @@ if( $the_query->have_posts() ) :
                         
                         <div class="card__summary">
                             <p><?php echo esc_html($card_summary ?: get_the_excerpt()); ?></p>
-                            
                         </div> <!-- end card__summary -->
                         
                         <div class="card__categories">
