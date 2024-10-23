@@ -78,14 +78,21 @@ if( $the_query->have_posts() ) :
                         
                         <div class="card__categories">
                             <!-- Display Development Category -->
-                            <?php if ($primary_development_category) : ?>
-                                <h3 class="card__category card__category--development">Category: <?php echo esc_html($primary_development_category); ?></h3>
-                            <?php endif; ?>
+                             <div class="card__category">
+                                <?php if ($primary_development_category) : ?>
+                                    <h3 class="card__category--heading">Category</h3>
+                                    <h3 class="card__category--text"><?php echo esc_html($primary_development_category); ?></h3>
+                                <?php endif; ?>
+                             </div>
+                           
 
                             <!-- Display Project Category -->
-                            <?php if ($primary_project_category) : ?>
-                                <h3 class="card__category card__category--project">Type: <?php echo esc_html($primary_project_category); ?></h3>
-                            <?php endif; ?>
+                             <div class="card__category">
+                                 <?php if ($primary_project_category) : ?>
+                                     <h3 class="card__category--heading">Type</h3>
+                                     <h3 class="card__category--text"><?php echo esc_html($primary_project_category); ?></h3>
+                                 <?php endif; ?>
+                             </div>
                         </div> <!-- end card__categories -->
 
                         <div class="card__footer">
