@@ -88,15 +88,10 @@
 
 .card__categories {
     display: flex;
-    height: 5%;
+    height: 10%;
     border-top: 2px solid rgba(var(--body-border), 1);
-    border-bottom: 2px solid rgba(var(--body-border), 1);
-}
-
-.card__footer {
-    display: flex;
-    align-items: center;
-    height: 5%;
+    color: #fff;
+    background-color: rgba(var(--indigo-dye), 1);
 }
 
 /***** Card Overlay Content *****/
@@ -159,6 +154,7 @@
 
 .card__category {
     text-align: center;
+    padding: 0.5rem 1rem 0;
 }
 
 .card__category--heading {

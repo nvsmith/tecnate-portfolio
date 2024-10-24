@@ -93,10 +93,6 @@ if( $the_query->have_posts() ) :
                                  <?php endif; ?>
                              </div>
                         </div> <!-- end card__categories -->
-
-                        <div class="card__footer">
-                            <time class="card__footer-date" datetime="<?php echo get_the_date('c'); ?>">Published: <?php echo get_the_date('d M Y'); ?></time>
-                        </div> <!-- end card__footer -->
                         <!-- END BASE SECTIONS -->
 
                         <!-- BEGIN OVERLAY CONTENT -->
