@@ -67,7 +67,7 @@ if( $the_query->have_posts() ) :
                             </div>
 
                             <!-- Project Button -->
-                            <a class="card__btn btn" href="<?php the_permalink(); ?>" class="">View Project</a>
+                            <a class="card__btn" href="<?php the_permalink(); ?>" class="">View Project</a>
                         </div> <!-- end card__hero -->
                         
                         
