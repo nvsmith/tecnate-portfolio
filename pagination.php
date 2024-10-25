@@ -1,7 +1,7 @@
 <?php
-global $the_query; // Access the query initialized in the `global-query.php` file
+global $portfolio_query; // Access the query initialized in the `global-query.php` file
 
-if ($the_query->max_num_pages > 1) {
+if ($portfolio_query->max_num_pages > 1) {
     echo '<div class="row">';
         echo '<div class="col">';
             
@@ -16,7 +16,7 @@ if ($the_query->max_num_pages > 1) {
                 // text for the next page link
                 'next_text' => __('Next &rarr;'),
                 // total number of pages
-                'total' => $the_query->max_num_pages,
+                'total' => $portfolio_query->max_num_pages,
                 // current page number
                 'current' => max(1, get_query_var('paged')),
             ));

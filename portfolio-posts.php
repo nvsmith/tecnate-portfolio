@@ -1,13 +1,16 @@
 <?php
-global $the_query; // Access the query initialized in the `global-query.php` file
+
+// Get the custom post type query & icon mappings in the Global Queries Code Block in Oxygen
+global $portfolio_query; 
+global $role_icons, $technology_icons, $language_icons;
 
 // Start The Loop to render each post
-if( $the_query->have_posts() ) :
+if( $portfolio_query->have_posts() ) :
     echo '<div id="posts-container" class="container">';
     echo '<div id="posts-row" class="row">';
 
-    while ( $the_query->have_posts() ) : $the_query->the_post();
-        // Retrieve ACF fields
+    while ( $portfolio_query->have_posts() ) : $portfolio_query->the_post();
+        // Retrieve ACF (or SCF) fields
         $project_title = get_field('project_title');
         $primary_image = get_field('primary_image');
         $primary_role = get_field('primary_role');
@@ -18,41 +21,7 @@ if( $the_query->have_posts() ) :
         $primary_development_category = get_field('primary_development_category');
         $primary_project_category = get_field('primary_project_category');
         $card_summary = get_field('card_summary');  
-
-        // Icon Mapping: 'ACF Choice Value' => 'Icon Name ("portfolio" + SVG symbol ID)'
-
-        // Define the icon mapping for primary role
-        $role_icons = [
-            'Front-end Developer' => 'portfoliofrontend-developer',
-            'Back-end Developer' => 'portfoliobackend-developer',
-            'Full-stack Developer' => 'portfoliofullstack-developer',
-            'Consultant' => 'portfolioconsultant',
-            'UI/UX Designer' => 'portfolioui-ux-designer'
-        ];
-
-        // Define the icon mapping for primary technology
-        $technology_icons = [
-            'Bootstrap' => 'portfoliobootstrap',
-            'jQuery' => 'portfoliojquery',
-            'React' => 'portfolioreact',
-            'Node.js' => 'portfolionodejs',
-            'WordPress' => 'portfoliowordpress',
-            'WooCommerce' => 'portfoliowoocommerce',
-            'API' => 'portfolioapi',
-            'MySQL' => 'portfoliomysql',
-            'Git' => 'portfoliogit'
-        ];
-
-        // Define the icon mapping for languages
-        $language_icons = [
-            'HTML' => 'portfoliohtml',
-            'Markdown' => 'portfoliomarkdown',
-            'CSS' => 'portfoliocss',
-            'JavaScript' => 'portfoliojavascript',
-            'PHP' => 'portfoliophp',
-            'C++' => 'portfoliocplusplus',
-            'Bash' => 'portfoliobash'
-        ];?>
+?>
 
         <!-- Render post in a 6/12 column layout until the md breakpoint -->
         <div class="col-md-6 col__card">
@@ -132,8 +101,7 @@ if( $the_query->have_posts() ) :
             </article> <!-- end card -->
         </div> <!-- end col__card -->
 
-
-    <?php
+<?php
     endwhile;
     echo '</div>'; // end posts-row
     echo '</div>'; // end posts-container
@@ -143,4 +111,5 @@ endif;
     
 // Reset post data to prevent conflicts with other loops
 wp_reset_postdata();
+
 ?>

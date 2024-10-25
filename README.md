@@ -4,7 +4,7 @@
 
 ### Version 2.0
 
-<a href="https://tecnate.dev" target="_blank" rel="author">Tecnate</a> | Last Updated: 2024.10.03
+<a href="https://tecnate.dev" target="_blank" rel="author">Tecnate</a> | Last Updated: 24 Oct 2024
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -18,7 +18,7 @@
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
-      <ul>
+      <ul>v
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
@@ -69,7 +69,7 @@ This portfolio was crafted for WordPress.
 
 -   WordPress installation
     -   Oxygen plugin
-    -   ACF plugin
+    -   ACF (or SCF) plugin
     -   CPTUI plugin
 -   CSS stylesheets:
     -   Customized Bootstrap-inspired layout.
@@ -94,12 +94,46 @@ So here's how to do it:
 1. Develop all code in a text editor of your choice.
 2. Copy over the final code into Oxygen:
 
--   1st Code Block: Initializes the custom query globally for the custom post type (`global-query.php`).
-    -   Do this in order to use pagination anywhere in the **posts** page section.
-    -   For this design, portfolio page navigation is going to display before AND after the posts render from The Loop.
--   2nd Code Block: Uses the query in the pagination block before the posts render (`pagination.php`).
--   3rd Code Block: Uses the query in the posts loop (`posts.php`).
--   4th Code Block: Uses the query in the pagination block after the posts render (`pagination.php`).
+### Code Blocks in Oxygen
+
+1. Global Queries Code Block: Initializes custom queries globally, including for the custom post type. See the _Global Queries_ section below for notes about how this code works.
+    - Declare global variables in order to use pagination and custom portfolio icons anywhere in the **posts** page section. Otherwise, The Loop will get very messy!
+    - Dev file: [global-queries.php](global-queries.php)
+2. Top Pagination Code Block: Uses the post-type query in the pagination block before the posts render.
+    - Dev file: [pagination.php](pagination.php)
+3. Posts Code Block: Uses the global queries defined in the first code block to execute The Loop and render portfolio items and custom icons.
+    - Dev file: [portfolio-posts.php](portfolio-posts.php).
+4. Bottom Pagination Code Block: Uses the post-type query in the pagination block after the posts render. This reuses the same code as the Top Pagination (for now).
+    - Dev file: [pagination.php](pagination.php)
+
+#### Global Queries
+
+This custom post type query and pagination system works as follows:
+
+```php
+// Get current page number from URL, or default to 1 if not set
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+// Set up an array of query arguments for the custom post type
+// Set 'paged' to the current page number to tell WordPress to fetch the posts from the correct page in the pagination.
+$args = array(
+    'post_type' => 'portfolio',
+    'posts_per_page' => 10,
+    'paged' => $paged
+);
+
+// Pass the query arguments into a new instance of the WP_Query constructor class.
+// This builds the SQL query that fetches posts from the database.
+$portfolio_query = new WP_Query( $args );
+```
+
+For icon mapping, the pattern is as follows: `'ACF Choice Value' => 'Icon Name'`
+
+-   ACF Choice values can be viewed from the WP Dashboard/ACF (or SCF at the time of this document update.)
+
+-   Icon Name Pattern = `'portfolio(SVG symbol ID)'`
+    -   Note: These are custom icons that have been uploaded into Oxygen as an SVG set named "portfolio". You must adhere to this naming pattern for the icons to render.
+-   Dev File (SVG icon set): [symbol-defs.svg](symbol-defs.svg).
 
 <!-- ROADMAP -->
 
