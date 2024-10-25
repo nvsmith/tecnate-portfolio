@@ -117,7 +117,32 @@
 /*** Overlay Icons ***/
 
 .card__icon-wrapper {
+    position: relative;
     width: fit-content;
+}
+
+.card__icon-wrapper:hover .card__tooltip--right {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.card__tooltip--right {
+    opacity: 0;
+    visibility: hidden;
+    z-index: 10;
+    position: absolute;
+    top: 30%;
+    left: 80%;
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    pointer-events: none;
+    background-color: #fff;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    transform: translateX(10%) translateY(10%);
 }
 
 .card__icon {
