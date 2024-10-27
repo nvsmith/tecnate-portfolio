@@ -71,7 +71,7 @@ if( $portfolio_query->have_posts() ) :
                                     <svg class="card__icon card__icon--role">
                                         <use xlink:href="#<?php echo esc_attr($role_icons[$primary_role]); ?>"></use>
                                     </svg>
-                                    <div class="card__tooltip--right">My Role: <?php echo esc_html($primary_role); ?></div>
+                                    <div class="card__tooltip card__tooltip--right">My Role: <?php echo esc_html($primary_role); ?></div>
                                 <?php endif; ?>
                             </div>
 
@@ -80,7 +80,7 @@ if( $portfolio_query->have_posts() ) :
                                     <svg class="card__icon card__icon--technology">
                                         <use xlink:href="#<?php echo esc_attr($technology_icons[$primary_technology]); ?>"></use>
                                     </svg>
-                                    <div class="card__tooltip--right">Main Tech: <?php echo esc_html($primary_technology); ?></div>
+                                    <div class="card__tooltip card__tooltip--right">Main Tech: <?php echo esc_html($primary_technology); ?></div>
                                 <?php endif; ?>
                             </div>
                         </div> <!-- end card__overlay--role -->
@@ -92,6 +92,7 @@ if( $portfolio_query->have_posts() ) :
                                         <svg class="card__icon card__icon--language">
                                             <use xlink:href="#<?php echo esc_attr($language_icons[$language]); ?>"></use>
                                         </svg>
+                                        <div class="card__tooltip card__tooltip--left"><?php echo esc_html($language); ?></div>
                                     </div>
                                 <?php endif;
                             endforeach; ?>

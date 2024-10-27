@@ -120,20 +120,19 @@
     position: relative;
     width: fit-content;
 }
-
-.card__icon-wrapper:hover .card__tooltip--right {
+.card__icon-wrapper:hover .card__tooltip--right,
+.card__icon-wrapper:hover .card__tooltip--left {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
-.card__tooltip--right {
+.card__tooltip {
     opacity: 0;
     visibility: hidden;
     z-index: 10;
     position: absolute;
     top: 30%;
-    left: 80%;
     width: fit-content;
     padding: 0.5rem 1rem;
     border-radius: 10px;
@@ -143,6 +142,14 @@
     background-color: #fff;
     transition: opacity 0.2s ease, transform 0.2s ease;
     transform: translateX(10%) translateY(10%);
+}
+
+.card__tooltip--right {
+    left: 80%;
+}
+
+.card__tooltip--left {
+    right: 80%;
 }
 
 .card__icon {
