@@ -18,8 +18,8 @@ $portfolio_query = new WP_Query( $args );
 // Initialize icon mappings
 global $role_icons, $technology_icons, $language_icons;
 
-// Icon Mapping: 'ACF Choice Value' => 'Icon Name' 
-// Note: Icon Name = 'portfolio(SVG symbol ID)'
+// Icon Mapping: 'ACF/SCF value (NOT label)' => 'Icon Name' 
+// Note: Icon Name = 'SVG Set Name' + '(SVG symbol ID)'
 
 // Define the icon mapping for primary role
 $role_icons = [
@@ -53,4 +53,5 @@ $language_icons = [
     'C++' => 'portfoliocplusplus',
     'Bash' => 'portfoliobash'
 ];
+
 ?>

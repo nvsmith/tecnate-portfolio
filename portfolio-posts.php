@@ -10,10 +10,12 @@ if( $portfolio_query->have_posts() ) :
     echo '<div id="posts-row" class="row">';
 
     while ( $portfolio_query->have_posts() ) : $portfolio_query->the_post();
-        // Retrieve ACF (or SCF) fields
+        // Retrieve ACF/SCF fields
         $project_title = get_field('project_title');
         $primary_image = get_field('primary_image');
-        $primary_role = get_field('primary_role');
+        $primary_role = get_field_object('primary_role');
+        $primary_role_value = $primary_role['value']; // e.g., "Front-end Developer"; used for icon mapping
+        $primary_role_label = $primary_role['choices'][$primary_role_value]; // e.g., "Building responsive, interactive user interfaces"
         $primary_technology = get_field('primary_technology');
         $language1 = get_field('language1');
         $language2 = get_field('language2');
@@ -38,7 +40,6 @@ if( $portfolio_query->have_posts() ) :
                             <!-- Project Button -->
                             <a class="card__btn" href="<?php the_permalink(); ?>" class="">View Project</a>
                         </div> <!-- end card__hero -->
-                        
                         
                         <div class="card__summary">
                             <p><?php echo esc_html($card_summary ?: get_the_excerpt()); ?></p>
@@ -67,11 +68,14 @@ if( $portfolio_query->have_posts() ) :
                         <!-- BEGIN OVERLAY CONTENT -->
                         <div class="card__overlay card__overlay--role">
                             <div class="card__icon-wrapper card__icon-wrapper--role">
-                                <?php if (isset($role_icons[$primary_role])) : ?>
+                                <?php if (isset($role_icons[$primary_role_value])) : ?>
                                     <svg class="card__icon card__icon--role">
-                                        <use xlink:href="#<?php echo esc_attr($role_icons[$primary_role]); ?>"></use>
+                                        <use xlink:href="#<?php echo esc_attr($role_icons[$primary_role_value]); ?>"></use>
                                     </svg>
-                                    <div class="card__tooltip card__tooltip--right">My Role: <?php echo esc_html($primary_role); ?></div>
+                                    <div class="card__tooltip card__tooltip--right">
+                                        My Role: <?php echo esc_html($primary_role_value); ?> <br>
+                                        <?php echo esc_html($primary_role_label); ?>
+                                    </div>
                                 <?php endif; ?>
                             </div>
 
