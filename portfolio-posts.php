@@ -13,10 +13,16 @@ if( $portfolio_query->have_posts() ) :
         // Retrieve ACF/SCF fields
         $project_title = get_field('project_title');
         $primary_image = get_field('primary_image');
+
         $primary_role = get_field_object('primary_role');
         $primary_role_value = $primary_role['value']; // e.g., "Front-end Developer"; used for icon mapping
         $primary_role_label = $primary_role['choices'][$primary_role_value]; // e.g., "Building responsive, interactive user interfaces"
-        $primary_technology = get_field('primary_technology');
+        
+        $primary_technology = get_field_object('primary_technology');
+        $primary_technology_value = $primary_technology['value']; // e.g., "React"; used for icon mapping
+        $primary_technology_label = $primary_technology['choices'][$primary_technology_value]; // e.g., "JavaScript library for fast, interactive user interfaces"
+        
+        
         $language1 = get_field('language1');
         $language2 = get_field('language2');
         $language3 = get_field('language3');
@@ -74,7 +80,7 @@ if( $portfolio_query->have_posts() ) :
                                     </svg>
                                     <div class="card__tooltip card__tooltip--right">
                                         <div class="card__tooltip--value">
-                                            My Role: <?php echo esc_html($primary_role_value); ?> <br>
+                                            My Role: <?php echo esc_html($primary_role_value); ?>
                                         </div>
                                         <div class="card__tooltip--label">
                                             <?php echo esc_html($primary_role_label); ?>
@@ -84,11 +90,18 @@ if( $portfolio_query->have_posts() ) :
                             </div>
 
                             <div class="card__icon-wrapper card__icon-wrapper--technology">
-                                <?php if (isset($technology_icons[$primary_technology])) : ?>
+                                <?php if (isset($technology_icons[$primary_technology_value])) : ?>
                                     <svg class="card__icon card__icon--technology">
-                                        <use xlink:href="#<?php echo esc_attr($technology_icons[$primary_technology]); ?>"></use>
+                                        <use xlink:href="#<?php echo esc_attr($technology_icons[$primary_technology_value]); ?>"></use>
                                     </svg>
-                                    <div class="card__tooltip card__tooltip--right">Main Tech: <?php echo esc_html($primary_technology); ?></div>
+                                    <div class="card__tooltip card__tooltip--right">
+                                        <div class="card__tooltip--value">
+                                            Main Tech: <?php echo esc_html($primary_technology_value); ?>
+                                        </div>
+                                        <div class="card__tooltip--label">
+                                            <?php echo esc_html($primary_technology_label); ?>
+                                        </div>
+                                    </div>
                                 <?php endif; ?>
                             </div>
                         </div> <!-- end card__overlay--role -->
