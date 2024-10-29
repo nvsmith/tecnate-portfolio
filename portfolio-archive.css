@@ -135,8 +135,10 @@
     top: 30%;
     width: fit-content;
     padding: 0.5rem 1rem;
+    border: 1px solid rgb(var(--indigo-dye));
     border-radius: 10px;
     font-size: 0.8rem;
+    letter-spacing: 0.5px;
     white-space: nowrap;
     pointer-events: none;
     background-color: #fff;
@@ -146,10 +148,17 @@
 
 .card__tooltip--right {
     left: 80%;
+    width: 280px;
+    white-space: normal;
 }
 
 .card__tooltip--left {
     right: 80%;
+}
+
+.card__tooltip--value {
+    margin-bottom: 0.25rem;
+    font-weight: bold;
 }
 
 .card__icon {

@@ -73,8 +73,12 @@ if( $portfolio_query->have_posts() ) :
                                         <use xlink:href="#<?php echo esc_attr($role_icons[$primary_role_value]); ?>"></use>
                                     </svg>
                                     <div class="card__tooltip card__tooltip--right">
-                                        My Role: <?php echo esc_html($primary_role_value); ?> <br>
-                                        <?php echo esc_html($primary_role_label); ?>
+                                        <div class="card__tooltip--value">
+                                            My Role: <?php echo esc_html($primary_role_value); ?> <br>
+                                        </div>
+                                        <div class="card__tooltip--label">
+                                            <?php echo esc_html($primary_role_label); ?>
+                                        </div>
                                     </div>
                                 <?php endif; ?>
                             </div>
