@@ -189,13 +189,27 @@
 .card__title {
     padding: 0.5rem 1rem 0.5rem 4.5rem;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-size: clamp(0.6rem, 1rem, 1.2rem);
 }
 
+/* Avg mobile styles (< 480px) */
+@media (max-width: 479px) {
+    .card__title {
+        font-size: 0.9rem;
+    }
+}
+
+/* Small mobile styles (< 400px) */
+@media (max-width: 399px) {
+    .card__title {
+        font-size: 0.8rem;
+    }
+}
+
 .card__category {
-    padding: 0.5rem 1rem 0;
     text-align: center;
+    flex: 1 1 50%;
 }
 
 .card__category--heading {

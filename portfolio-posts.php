@@ -115,7 +115,7 @@ if( $portfolio_query->have_posts() ) :
                                             <use xlink:href="#<?php echo esc_attr($language_icons[$language]); ?>"></use>
                                         </svg>
                                         <div class="card__tooltip card__tooltip--left" role="tooltip" id="tooltip-<?php echo esc_attr($language); ?>">
-                                            <?php echo esc_html($language); ?>
+                                            Coded with: <?php echo esc_html($language); ?>
                                         </div>
                                     </div>
                                 <?php endif;
