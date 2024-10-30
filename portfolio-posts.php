@@ -10,10 +10,14 @@ if( $portfolio_query->have_posts() ) :
     echo '<div id="posts-row" class="row">';
 
     while ( $portfolio_query->have_posts() ) : $portfolio_query->the_post();
-        // Retrieve ACF/SCF fields
+        // Retrieve ACF/SCF fields for base sections
         $project_title = get_field('project_title');
         $primary_image = get_field('primary_image');
+        $primary_development_category = get_field('primary_development_category');
+        $primary_project_category = get_field('primary_project_category');
+        $card_summary = get_field('card_summary');  
 
+        // Retrieve ACF/SCF fields for overlay content
         $primary_role = get_field_object('primary_role');
         $primary_role_value = $primary_role['value']; // e.g., "Front-end Developer"; used for icon mapping
         $primary_role_label = $primary_role['choices'][$primary_role_value]; // e.g., "Building responsive, interactive user interfaces"
@@ -22,13 +26,10 @@ if( $portfolio_query->have_posts() ) :
         $primary_technology_value = $primary_technology['value']; // e.g., "React"; used for icon mapping
         $primary_technology_label = $primary_technology['choices'][$primary_technology_value]; // e.g., "JavaScript library for fast, interactive user interfaces"
         
-        
         $language1 = get_field('language1');
         $language2 = get_field('language2');
         $language3 = get_field('language3');
-        $primary_development_category = get_field('primary_development_category');
-        $primary_project_category = get_field('primary_project_category');
-        $card_summary = get_field('card_summary');  
+       
 ?>
 
         <!-- Render post in a 6/12 column layout until the md breakpoint -->
@@ -75,10 +76,10 @@ if( $portfolio_query->have_posts() ) :
                         <div class="card__overlay card__overlay--role">
                             <div class="card__icon-wrapper card__icon-wrapper--role">
                                 <?php if (isset($role_icons[$primary_role_value])) : ?>
-                                    <svg class="card__icon card__icon--role">
+                                    <svg class="card__icon card__icon--role" aria-describedby="tooltip-<?php echo esc_attr($primary_role_value); ?>">
                                         <use xlink:href="#<?php echo esc_attr($role_icons[$primary_role_value]); ?>"></use>
                                     </svg>
-                                    <div class="card__tooltip card__tooltip--right">
+                                    <div class="card__tooltip card__tooltip--right" role="tooltip" id="tooltip-<?php echo esc_attr($primary_role_value); ?>">
                                         <div class="card__tooltip--value">
                                             My Role: <?php echo esc_html($primary_role_value); ?>
                                         </div>
@@ -91,10 +92,10 @@ if( $portfolio_query->have_posts() ) :
 
                             <div class="card__icon-wrapper card__icon-wrapper--technology">
                                 <?php if (isset($technology_icons[$primary_technology_value])) : ?>
-                                    <svg class="card__icon card__icon--technology">
+                                    <svg class="card__icon card__icon--technology" aria-describedby="tooltip-<?php echo esc_attr($primary_technology_value); ?>">
                                         <use xlink:href="#<?php echo esc_attr($technology_icons[$primary_technology_value]); ?>"></use>
                                     </svg>
-                                    <div class="card__tooltip card__tooltip--right">
+                                    <div class="card__tooltip card__tooltip--right" role="tooltip" id="tooltip-<?php echo esc_attr($primary_technology_value); ?>">
                                         <div class="card__tooltip--value">
                                             Main Tech: <?php echo esc_html($primary_technology_value); ?>
                                         </div>
@@ -110,10 +111,12 @@ if( $portfolio_query->have_posts() ) :
                             <?php foreach ([$language1, $language2, $language3] as $language) :
                                 if ($language && array_key_exists($language, $language_icons)) : ?>
                                     <div class="card__icon-wrapper card__icon-wrapper--language">
-                                        <svg class="card__icon card__icon--language">
+                                        <svg class="card__icon card__icon--language" aria-describedby="tooltip-<?php echo esc_attr($language); ?>">
                                             <use xlink:href="#<?php echo esc_attr($language_icons[$language]); ?>"></use>
                                         </svg>
-                                        <div class="card__tooltip card__tooltip--left"><?php echo esc_html($language); ?></div>
+                                        <div class="card__tooltip card__tooltip--left" role="tooltip" id="tooltip-<?php echo esc_attr($language); ?>">
+                                            <?php echo esc_html($language); ?>
+                                        </div>
                                     </div>
                                 <?php endif;
                             endforeach; ?>
