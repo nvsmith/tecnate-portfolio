@@ -1,4 +1,5 @@
 :root {
+    /* --- Color Variables --- */
     --indigo-dye: 3, 60, 84;
     --magenta-haze: 159, 47, 107;
     --middle-red: 255, 143, 112;
@@ -83,6 +84,7 @@
     padding: 1rem;
 }
 
+/* Note: categories flex direction toggled with JS */
 .card__categories {
     display: flex;
     height: 10%;
@@ -114,12 +116,29 @@
     width: fit-content;
 }
 
-/*** Overlay Icons ***/
+/*** Overlay Icons & Tooltips ***/
 
 .card__icon-wrapper {
     position: relative;
     width: fit-content;
 }
+
+.card__icon {
+    width: 3rem;
+    height: 3rem;
+    border: 4px solid goldenrod;
+    border-radius: 50%;
+}
+
+.card__icon--role {
+    width: 5rem;
+    height: 5rem;
+}
+
+.card__icon-wrapper--technology {
+    margin-top: -1rem;
+}
+
 .card__icon-wrapper:hover .card__tooltip--right,
 .card__icon-wrapper:hover .card__tooltip--left {
     opacity: 1;
@@ -161,22 +180,6 @@
     font-weight: bold;
 }
 
-.card__icon {
-    width: 3rem;
-    height: 3rem;
-    border: 4px solid goldenrod;
-    border-radius: 50%;
-}
-
-.card__icon--role {
-    width: 5rem;
-    height: 5rem;
-}
-
-.card__icon-wrapper--technology {
-    margin-top: -1rem;
-}
-
 /***** Card Text Wrappers & Elements *****/
 
 .card__title-wrapper {
@@ -190,17 +193,16 @@
     padding: 0.5rem 1rem 0.5rem 4.5rem;
     font-weight: bold;
     font-size: 1rem;
-    font-size: clamp(0.6rem, 1rem, 1.2rem);
 }
 
-/* Avg mobile styles (< 480px) */
+/* Title - avg mobile styles (< 480px) */
 @media (max-width: 479px) {
     .card__title {
         font-size: 0.9rem;
     }
 }
 
-/* Small mobile styles (< 400px) */
+/* Title - small mobile styles (< 400px) */
 @media (max-width: 399px) {
     .card__title {
         font-size: 0.8rem;
@@ -208,10 +210,15 @@
 }
 
 .card__category {
-    text-align: center;
+    display: flex;
     flex: 1 1 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
+/* Note: headings size toggled with JS */
 .card__category--heading {
     font-weight: normal;
     font-size: 0.8rem;
@@ -220,6 +227,7 @@
 
 .card__category--text {
     overflow: hidden;
+    font-size: 0.8rem;
     font-size: clamp(5px, 0.8rem, 12px);
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -231,6 +239,7 @@
     text-align: right;
 }
 
+/* Hide scrollbar on summary */
 .card__summary p {
     scrollbar-width: none;
     height: 100%;
