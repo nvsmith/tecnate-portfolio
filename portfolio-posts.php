@@ -1,3 +1,5 @@
+// TODO: Combine global queries, pagination, and posts code into a single file to test pagination in Oxygen
+
 <?php
 
 // Get the custom post type query & icon mappings in the Global Queries Code Block in Oxygen
@@ -115,7 +117,7 @@ if( $portfolio_query->have_posts() ) :
                                             <use xlink:href="#<?php echo esc_attr($language_icons[$language]); ?>"></use>
                                         </svg>
                                         <div class="card__tooltip card__tooltip--left" role="tooltip" id="tooltip-<?php echo esc_attr($language); ?>">
-                                            Coded with: <?php echo esc_html($language); ?>
+                                            Coded with <?php echo esc_html($language); ?>
                                         </div>
                                     </div>
                                 <?php endif;
