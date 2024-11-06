@@ -1,4 +1,3 @@
-// TODO: Combine global queries, pagination, and posts code into a single file to test pagination in Oxygen
 
 <?php
 
