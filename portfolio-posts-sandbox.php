@@ -12,6 +12,42 @@ $portfolio_query = new WP_Query(array(
     'orderby' => 'date'
 ));
 
+// Icon Mapping: 'ACF/SCF Value (not label)' => 'Icon Name' 
+// Icon Name: 'SVG Set Name' + '(SVG symbol ID)'
+
+// Primary Role Icon Mapping
+$role_icons = [
+    'Front-end Developer' => 'portfoliofrontend-developer',
+    'Back-end Developer' => 'portfoliobackend-developer',
+    'Full-stack Developer' => 'portfoliofullstack-developer',
+    'Consultant' => 'portfolioconsultant',
+    'UI/UX Designer' => 'portfolioui-ux-designer'
+];
+
+// Technology Icon Mapping
+$technology_icons = [
+    'Bootstrap' => 'portfoliobootstrap',
+    'jQuery' => 'portfoliojquery',
+    'React' => 'portfolioreact',
+    'Node.js' => 'portfolionodejs',
+    'WordPress' => 'portfoliowordpress',
+    'WooCommerce' => 'portfoliowoocommerce',
+    'API' => 'portfolioapi',
+    'MySQL' => 'portfoliomysql',
+    'Git' => 'portfoliogit'
+];
+
+// Language Icon Mapping
+$language_icons = [
+    'HTML' => 'portfoliohtml',
+    'Markdown' => 'portfoliomarkdown',
+    'CSS' => 'portfoliocss',
+    'JavaScript' => 'portfoliojavascript',
+    'PHP' => 'portfoliophp',
+    'C++' => 'portfoliocplusplus',
+    'Bash' => 'portfoliobash'
+];
+
 echo '<div id="posts-container" class="container">';
 
 // Start The Loop to fetch posts
@@ -33,20 +69,25 @@ if ($portfolio_query) :
 
         echo '<div id="posts-row" class="row">';
             while ($portfolio_query->have_posts()) : $portfolio_query->the_post();
-                // Retrieve ACF/SCF fields for base sections
+                // Retrieve ACF/SCF for base sections
                 $project_title = get_field('project_title');
                 $primary_image = get_field('primary_image');
                 $primary_development_category = get_field('primary_development_category');
                 $primary_project_category = get_field('primary_project_category');
-                $card_summary = get_field('card_summary');
+                $card_summary = get_field('card_summary');  
 
-                // Echo each ACF/SCF field value in <p> tags, but only if the field exists and has a value
-                if ($project_title) echo '<p>' . $project_title . '</p>';
-                if ($primary_image) echo '<p>' . $primary_image . '</p>';
-                if ($primary_development_category) echo '<p>' . $primary_development_category . '</p>';
-                if ($primary_project_category) echo '<p>' . $primary_project_category . '</p>';
-                if ($card_summary) echo '<p>' . $card_summary . '</p>';
-                echo '<hr>';
+                // Retrieve ACF/SCF for overlay content
+                $primary_role = get_field_object('primary_role');
+                $primary_role_value = $primary_role['value']; // e.g., "Front-end Developer"; used for icon mapping
+                $primary_role_label = $primary_role['choices'][$primary_role_value]; // e.g., "Building responsive, interactive user interfaces"
+                
+                $primary_technology = get_field_object('primary_technology');
+                $primary_technology_value = $primary_technology['value']; // e.g., "React"; used for icon mapping
+                $primary_technology_label = $primary_technology['choices'][$primary_technology_value]; // e.g., "JavaScript library for fast, interactive user interfaces"
+                
+                $language1 = get_field('language1');
+                $language2 = get_field('language2');
+                $language3 = get_field('language3');
 
             endwhile;
         echo '</div>'; // end posts-row
