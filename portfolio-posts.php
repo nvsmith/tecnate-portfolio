@@ -1,37 +1,115 @@
-
 <?php
 
-// Get the custom post type query & icon mappings in the Global Queries Code Block in Oxygen
-global $portfolio_query; 
+// Get current page number from URL, or default to 1 if not set
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+// Custom query for 'portfolio' post type with pagination
+$portfolio_query = new WP_Query(array(
+    'post_type' => 'portfolio',
+    // 'posts_per_page' => 6, set in WP Dashboard > Settings > Reading
+    'paged' => $paged,
+    'order' => 'DESC',
+    'orderby' => 'date'
+));
+
+// Pagination args for the paginate_links function
+$big = 999999999; // Placeholder for pagination
+$pagination_args = array(
+    'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+    'format'    => '/page/%#%/',
+    'current'   => max(1, get_query_var('paged')),
+    'total'     => $portfolio_query->max_num_pages,
+    'prev_text' => esc_attr__('&larr;'),
+    'next_text' => esc_attr__('&rarr;'),
+);
+
+// Initialize the icon mapping array variables
 global $role_icons, $technology_icons, $language_icons;
 
-// Start The Loop to render each post
-if( $portfolio_query->have_posts() ) :
-    echo '<div id="posts-container" class="container">';
+// Icon Mapping: 'ACF/SCF Value (not label)' => 'Icon Name' 
+// Icon Name: 'SVG Set Name' + '(SVG symbol ID)'
+
+// Primary Role Icon Mapping
+$role_icons = [
+    'Front-end Developer' => 'portfoliofrontend-developer',
+    'Back-end Developer' => 'portfoliobackend-developer',
+    'Full-stack Developer' => 'portfoliofullstack-developer',
+    'Consultant' => 'portfolioconsultant',
+    'UI/UX Designer' => 'portfolioui-ux-designer'
+];
+
+// Technology Icon Mapping
+$technology_icons = [
+    'Bootstrap' => 'portfoliobootstrap',
+    'jQuery' => 'portfoliojquery',
+    'React' => 'portfolioreact',
+    'Node.js' => 'portfolionodejs',
+    'WordPress' => 'portfoliowordpress',
+    'WooCommerce' => 'portfoliowoocommerce',
+    'API' => 'portfolioapi',
+    'MySQL' => 'portfoliomysql',
+    'Git' => 'portfoliogit'
+];
+
+// Language Icon Mapping
+$language_icons = [
+    'HTML' => 'portfoliohtml',
+    'Markdown' => 'portfoliomarkdown',
+    'CSS' => 'portfoliocss',
+    'JavaScript' => 'portfoliojavascript',
+    'PHP' => 'portfoliophp',
+    'C++' => 'portfoliocplusplus',
+    'Bash' => 'portfoliobash'
+];
+
+// Retrieve any ACF/SCF field objects as an associative array
+function retrieve_field_object($field_name) {
+    $field = get_field_object($field_name);
+    if ($field) {
+        $value = $field['value'];
+        $label = $field['choices'][$value] ?? null;
+        return array('value' => $value, 'label' => $label);
+    }
+    return null;
+}
+
+
+echo '<div id="posts-container" class="container">';
+
+// Start The Loop to fetch posts
+if ($portfolio_query->have_posts()) :
+
+    // Top Pagination
+    echo '<div id="top-pagination" class="row row__pagination">';
+        echo paginate_links($pagination_args);
+    echo '</div>'; // end top pagination
+
     echo '<div id="posts-row" class="row">';
+    while ($portfolio_query->have_posts()) : $portfolio_query->the_post();
 
-    while ( $portfolio_query->have_posts() ) : $portfolio_query->the_post();
-        // Retrieve ACF/SCF fields for base sections
-        $project_title = get_field('project_title');
-        $primary_image = get_field('primary_image');
-        $primary_development_category = get_field('primary_development_category');
-        $primary_project_category = get_field('primary_project_category');
-        $card_summary = get_field('card_summary');  
+        // Retrieve all ACF/SCF for the current post
+        $custom_fields = get_fields();
 
-        // Retrieve ACF/SCF fields for overlay content
-        $primary_role = get_field_object('primary_role');
-        $primary_role_value = $primary_role['value']; // e.g., "Front-end Developer"; used for icon mapping
-        $primary_role_label = $primary_role['choices'][$primary_role_value]; // e.g., "Building responsive, interactive user interfaces"
-        
-        $primary_technology = get_field_object('primary_technology');
-        $primary_technology_value = $primary_technology['value']; // e.g., "React"; used for icon mapping
-        $primary_technology_label = $primary_technology['choices'][$primary_technology_value]; // e.g., "JavaScript library for fast, interactive user interfaces"
-        
-        $language1 = get_field('language1');
-        $language2 = get_field('language2');
-        $language3 = get_field('language3');
-       
-?>
+        // Accessing all standard fields
+        $project_title = $custom_fields['project_title'] ?? get_the_title(); // fallback to post title
+        $primary_image = $custom_fields['primary_image'] ?? null;
+        $primary_development_category = $custom_fields['primary_development_category'] ?? null;
+        $primary_project_category = $custom_fields['primary_project_category'] ?? null;
+        $card_summary = $custom_fields['card_summary'] ?? null;
+        $language1 = $custom_fields['language1'] ?? null;
+        $language2 = $custom_fields['language2'] ?? null;
+        $language3 = $custom_fields['language3'] ?? null;
+
+        // Accessing all field objects
+        $primary_role = retrieve_field_object('primary_role');
+        $primary_role_value = $primary_role['value'] ?? null;
+        $primary_role_label = $primary_role['label'] ?? null;
+
+        $primary_technology = retrieve_field_object('primary_technology');
+        $primary_technology_value = $primary_technology['value'] ?? null;
+        $primary_technology_label = $primary_technology['label'] ?? null;
+
+        ?>
 
         <!-- Render post in a 6/12 column layout until the md breakpoint -->
         <div class="col-md-6 col__card">
@@ -42,34 +120,30 @@ if( $portfolio_query->have_posts() ) :
                         <!-- BEGIN BASE SECTIONS -->
                         <div class="card__hero" style="background-image: url('<?php echo esc_url($primary_image['url']); ?>')">
                             <div class="card__title-wrapper">
-                                <h2 class="card__title"><?php echo esc_html($project_title ?: get_the_title()); ?></h2>
+                                <h2 class="card__title"><?php echo esc_html($project_title); ?></h2>
                             </div>
 
                             <!-- Project Button -->
-                            <a class="card__btn" href="<?php the_permalink(); ?>" class="">View Project</a>
+                            <a class="card__btn" href="<?php the_permalink(); ?>">View Project</a>
                         </div> <!-- end card__hero -->
                         
                         <div class="card__summary">
-                            <p><?php echo esc_html($card_summary ?: get_the_excerpt()); ?></p>
+                            <p><?php echo esc_html($card_summary); ?></p>
                         </div> <!-- end card__summary -->
                         
                         <div class="card__categories">
                             <!-- Display Development Category -->
-                             <div class="card__category">
-                                <?php if ($primary_development_category) : ?>
-                                    <h3 class="card__category--heading">Category</h3>
-                                    <h3 class="card__category--text"><?php echo esc_html($primary_development_category); ?></h3>
-                                <?php endif; ?>
-                             </div>
-                           
+                            <div class="card__category">
+                                <h3 class="card__category--heading">Category</h3>
+                                <h3 class="card__category--text"><?php echo esc_html($primary_development_category); ?></h3>
+                            </div>
+                        
 
                             <!-- Display Project Category -->
-                             <div class="card__category">
-                                 <?php if ($primary_project_category) : ?>
-                                     <h3 class="card__category--heading">Type</h3>
-                                     <h3 class="card__category--text"><?php echo esc_html($primary_project_category); ?></h3>
-                                 <?php endif; ?>
-                             </div>
+                            <div class="card__category">
+                                <h3 class="card__category--heading">Type</h3>
+                                <h3 class="card__category--text"><?php echo esc_html($primary_project_category); ?></h3>
+                            </div>
                         </div> <!-- end card__categories -->
                         <!-- END BASE SECTIONS -->
 
@@ -109,8 +183,8 @@ if( $portfolio_query->have_posts() ) :
                         </div> <!-- end card__overlay--role -->
 
                         <div class="card__overlay card__overlay--languages">
-                            <?php foreach ([$language1, $language2, $language3] as $language) :
-                                if ($language && array_key_exists($language, $language_icons)) : ?>
+                            <?php foreach (array_filter([$language1, $language2, $language3]) as $language) :
+                                if (array_key_exists($language, $language_icons)) : ?>
                                     <div class="card__icon-wrapper card__icon-wrapper--language">
                                         <svg class="card__icon card__icon--language" aria-describedby="tooltip-<?php echo esc_attr($language); ?>">
                                             <use xlink:href="#<?php echo esc_attr($language_icons[$language]); ?>"></use>
@@ -129,15 +203,26 @@ if( $portfolio_query->have_posts() ) :
             </article> <!-- end card -->
         </div> <!-- end col__card -->
 
-<?php
+        <?php
+
     endwhile;
     echo '</div>'; // end posts-row
-    echo '</div>'; // end posts-container
-else : 
-    echo '<p>Sorry, there are no posts available.</p>';
+
+    // Bottom Pagination
+    echo '<div id="bottom-pagination" class="row row__pagination">';
+        echo paginate_links($pagination_args);
+    echo '</div>'; // end bottom pagination
+
+    // Reset post data to prevent conflicts with other loops
+    wp_reset_postdata();
+
+else :
+    echo 
+    '<div id="no-posts-row" class="row">
+        <p id="no-posts" class="error">Sorry, there are no portfolio items available.</p>
+    </div>';
 endif;
-    
-// Reset post data to prevent conflicts with other loops
-wp_reset_postdata();
+
+echo '</div>'; // end posts-container
 
 ?>

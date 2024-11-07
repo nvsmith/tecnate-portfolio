@@ -7,6 +7,35 @@
     --silver-chalice: 173, 173, 173;
 }
 
+/***** Pagination *****/
+
+.row__pagination {
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.page-numbers {
+    margin: 0 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid rgb(var(--indigo-dye));
+    border-radius: 5px;
+    color: rgb(var(--indigo-dye));
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.page-numbers:hover {
+    border: 1px solid rgb(var(--middle-red));
+    color: #fff;
+    background-color: rgb(var(--middle-red));
+}
+
+.page-numbers.current {
+    border: 1px solid rgb(var(--indigo-dye));
+    color: #fff;
+    background-color: rgb(var(--indigo-dye));
+}
+
 /***** Main Card Layout *****/
 
 .col__card {
