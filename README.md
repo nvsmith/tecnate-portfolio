@@ -4,7 +4,7 @@
 
 ### Version 2.0
 
-<a href="https://tecnate.dev" target="_blank" rel="author">Tecnate</a> | Last Updated: 29 Oct 2024
+<a href="https://tecnate.dev" target="_blank" rel="author">Tecnate</a> | Last Updated: 08 Nov 2024
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -58,6 +58,7 @@ This is a newly designed portfolio for <a href="https://tecnate.dev/portfolio" t
 -   HTML
 -   CSS
 -   PHP
+-   JavaScript
 -   WordPress
 
 <!-- GETTING STARTED -->
@@ -70,7 +71,7 @@ This portfolio was crafted for WordPress.
 
 -   WordPress installation
     -   Oxygen plugin
-    -   ACF/SCF plugin (WP Engine)
+    -   ACF/SCF plugin (from WP Engine)
     -   CPTUI plugin
 -   CSS stylesheets:
     -   Customized Bootstrap-inspired layout.
@@ -103,39 +104,26 @@ So here's how to do it:
     1. Make sure the front-end looks and behaves as expected.
     2. After all testing, minify the final code within your Code Block for improved performance.
 
-### Code Blocks in Oxygen
+### The Posts Section
 
-1. Global Queries Code Block: Initializes custom queries globally, including for the custom post type. See the _Global Queries_ section below for notes about how this code works.
-    - Declare global variables in order to use pagination and custom portfolio icons anywhere in the **posts** page section. Otherwise, The Loop will get very messy!
-    - Dev file: [global-queries.php](global-queries.php)
-2. Top Pagination Code Block: Uses the post-type query in the pagination block before the posts render.
-    - Dev file: [pagination.php](pagination.php)
-3. Posts Code Block: Uses the global queries defined in the first code block to execute The Loop and render portfolio items and their custom icons and tooltips. This block houses all the CSS for the portfolio cards as well.
-    - Dev file: [portfolio-posts.php](portfolio-posts.php).
-    - Dev file: [portfolio-archive.css](portfolio-archive.css).
-4. Bottom Pagination Code Block: Uses the post-type query in the pagination block after the posts render. This reuses the same code as the Top Pagination (for now).
-    - Dev file: [pagination.php](pagination.php)
+In Oxygen, the posts section is comprised of two main containers:
 
-### Global Queries: Custom Post, Pagination, & Icons
+1. Icon container. I hid this entire container, but it houses all the custom icons that are used throughout the archive. This was the most reliable way I found to get these icons to render properly, by adding them directly to the page via Oxygen so they can be used throughout the archive.
+2. Posts Code Block. This is where all the magic happens. All the logic to render The Loop, Pagination, and custom JavaScript effects are housed here. All development was done locally before being copied into Oxygen:
+    1. Custom post type query, pagination, The Loop, and rendering logic: [portfolio-posts.php](portfolio-posts.php)
+    2. All styles that control this archive and card design: [portfolio-archive.css](portfolio-archive.css)
+    3. Category columns vs. row toggle depending on the card size: [categories-flex-toggle.js](categories-flex-toggle.js)
 
-#### Custom Post Query & Pagination System
+#### Pagination For A Custom Post Type
 
-```php
-// Get current page number from URL, or default to 1 if not set
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+Getting the pagination links to work properly was very tricky; early attempts to use the links kept resulting in a `404 Error`. But in the end I found a solution, so here's what I had to do to get things to work:
 
-// Set up an array of query arguments for the custom post type
-// Set 'paged' to the current page number to tell WordPress to fetch the posts from the correct page in the pagination.
-$args = array(
-    'post_type' => 'portfolio',
-    'posts_per_page' => 10,
-    'paged' => $paged
-);
-
-// Pass the query arguments into a new instance of the WP_Query constructor class.
-// This builds the SQL query that fetches posts from the database.
-$portfolio_query = new WP_Query( $args );
-```
+-   Rather than setting the number of posts via the custom query in your code, use the **WP Dashboard > Settings > Reading** controls instead.
+-   Add an Oxygen Easy Posts element in the Posts Section (I didn’t set up any custom queries, I just allowed the defaults since this archive is set to my desired ‘portfolio’ post type anyway).
+-   On the front-end, use the default pagination links that render from the Easy Posts element and note the URL format. Use this format into the pagination arguments array in [portfolio-posts.php](portfolio-posts.php).
+    -   It should look something like `'format'    => '/page/%#%/'`
+-   Go to **WP Dashboard > Settings > Permalinks**. Choose any different permalinks structure and save, then revert back to the "Post name" structure and save again to refresh the links in WordPress.
+-   After testing that the custom pagination works, you can delete the Easy Posts element in Oxygen.
 
 #### Custom Icons & Tooltips
 
@@ -144,8 +132,7 @@ $portfolio_query = new WP_Query( $args );
     -   It is always the value, not the label, that gets mapped to the icon.
 -   For icon mapping in PHP, the pattern is: `'ACF Value' => 'Icon Name'`.
 -   For the Icon Name, the pattern is: `'(SVG Icon Set Name)` + `(SVG Symbol ID)'`.
-    -   My custom icons are uploaded into Oxygen as an SVG set named "portfolio".
-    -   Example: for the "Git" icon, the ACF/SCF icon mapping in PHP would look like `'Git' => 'portfoliogit'` .
+    -   My custom icons are uploaded into Oxygen as an SVG set named "portfolio". So for my "Git" icon, the ACF/SCF icon mapping in PHP looks like `'Git' => 'portfoliogit'`.
 -   Dev File (SVG icon set): [symbol-defs.svg](symbol-defs.svg).
     -   My design implements custom tooltips. As such, to disable browsers' native tooltips, I removed all `<title>` elements directly from my SVG file before importing into Oxygen.
 -   Dev File (SVG icon set backup): [symbol-defs.svg.bak](symbol-defs.svg.bak).
