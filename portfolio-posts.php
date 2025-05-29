@@ -27,7 +27,7 @@ $pagination_args = array(
 global $role_icons, $technology_icons, $language_icons;
 
 // Icon Mapping: 'ACF/SCF Value (not label)' => 'Icon Name' 
-// Icon Name: 'SVG Set Name' + '(SVG symbol ID)'
+// Icon Name: 'SVG Set Name' + 'SVG symbol ID' (no spaces)
 
 // Primary Role Icon Mapping
 $role_icons = [
