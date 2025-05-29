@@ -41,7 +41,7 @@ Temporary Items
 
 
 # Images & Designs
-*.png
+# *.png
 *.jpg
 *.jpeg
 ### Place any directories or files you don't want tracked below like so:
