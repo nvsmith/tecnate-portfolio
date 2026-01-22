@@ -7,6 +7,18 @@
     --silver-chalice: 173, 173, 173;
 }
 
+/***** Screen Reader Style *****/
+.screen-reader-text {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
 /***** Pagination *****/
 
 .row__pagination {

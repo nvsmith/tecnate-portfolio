@@ -19,9 +19,10 @@ $pagination_args = array(
     'format'    => '/page/%#%/',
     'current'   => max(1, get_query_var('paged')),
     'total'     => $portfolio_query->max_num_pages,
-    'prev_text' => esc_attr__('&larr;'),
-    'next_text' => esc_attr__('&rarr;'),
+    'prev_text' => '<span aria-hidden="true">&larr;</span><span class="screen-reader-text">Previous page</span>',
+    'next_text' => '<span aria-hidden="true">&rarr;</span><span class="screen-reader-text">Next page</span>',
 );
+
 
 // Initialize the icon mapping array variables
 global $role_icons, $technology_icons, $language_icons;
