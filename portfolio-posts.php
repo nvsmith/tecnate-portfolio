@@ -158,7 +158,7 @@ if ($portfolio_query->have_posts()) :
                         <div class="card__overlay card__overlay--role">
 
                             <!-- Primary Role Icon -->
-                            <div class="card__icon-wrapper card__icon-wrapper--role">
+                            <div class="card__icon-wrapper card__icon-wrapper--role" tabindex="0">
                                 <?php if (isset($role_icons[$primary_role_value])) :
                                     $role_id = make_safe_id($primary_role_value, get_the_ID()); 
                                 ?>
@@ -177,7 +177,7 @@ if ($portfolio_query->have_posts()) :
                             </div>
 
                             <!-- Main Tech Icon -->
-                            <div class="card__icon-wrapper card__icon-wrapper--technology">
+                            <div class="card__icon-wrapper card__icon-wrapper--technology" tabindex="0">
                                 <?php if (isset($technology_icons[$primary_technology_value])) : 
                                     $tech_id = make_safe_id($primary_technology_value, get_the_ID()); 
                                 ?>
@@ -202,7 +202,7 @@ if ($portfolio_query->have_posts()) :
                                 if (array_key_exists($language, $language_icons)) : 
                                     $language_id = make_safe_id($language, get_the_ID());                                    
                             ?>
-                                    <div class="card__icon-wrapper card__icon-wrapper--language">
+                                    <div class="card__icon-wrapper card__icon-wrapper--language" tabindex="0">
                                         <svg class="card__icon card__icon--language" role="img" aria-labelledby="<?php echo esc_attr($language_id); ?>">
                                             <use xlink:href="#<?php echo esc_attr($language_icons[$language]); ?>"></use>
                                         </svg>

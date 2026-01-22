@@ -118,7 +118,7 @@
     display: flex;
     height: 10%;
     border-top: 2px solid goldenrod;
-    color: #fff;
+    color: #0a0a0a;
     background-color: goldenrod;
 }
 
@@ -168,8 +168,11 @@
     margin-top: -1rem;
 }
 
+/* Hover & Focus States */
 .card__icon-wrapper:hover .card__tooltip--right,
-.card__icon-wrapper:hover .card__tooltip--left {
+.card__icon-wrapper:hover .card__tooltip--left,
+.card__icon-wrapper:focus-within .card__tooltip--right,
+.card__icon-wrapper:focus-within .card__tooltip--left {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -190,7 +193,9 @@
     white-space: nowrap;
     pointer-events: none;
     background-color: #fff;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
     transform: translateX(10%) translateY(10%);
 }
 
