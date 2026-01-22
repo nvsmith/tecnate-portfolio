@@ -73,6 +73,13 @@ function retrieve_field_object($field_name) {
     return null;
 }
 
+//Helper function to create valid, unique HTML IDs to attach to elements
+function make_safe_id($string, $post_id) {
+    $id = strtolower($string);
+    $id = preg_replace('/[^a-z0-9]+/', '-', $id); // replace non-alphanumeric with hyphen
+    $id = trim($id, '-');                      // remove leading/trailing hyphens
+    return $id . '-' . $post_id;              // append post ID for uniqueness
+}
 
 echo '<div id="posts-container" class="container">';
 
@@ -149,12 +156,16 @@ if ($portfolio_query->have_posts()) :
 
                         <!-- BEGIN OVERLAY CONTENT -->
                         <div class="card__overlay card__overlay--role">
+
+                            <!-- Primary Role Icon -->
                             <div class="card__icon-wrapper card__icon-wrapper--role">
-                                <?php if (isset($role_icons[$primary_role_value])) : ?>
-                                    <svg class="card__icon card__icon--role" aria-describedby="tooltip-<?php echo esc_attr($primary_role_value); ?>">
+                                <?php if (isset($role_icons[$primary_role_value])) :
+                                    $role_id = make_safe_id($primary_role_value, get_the_ID()); 
+                                ?>
+                                    <svg class="card__icon card__icon--role" role="img" aria-labelledby="<?php echo esc_attr($role_id); ?>">
                                         <use xlink:href="#<?php echo esc_attr($role_icons[$primary_role_value]); ?>"></use>
                                     </svg>
-                                    <div class="card__tooltip card__tooltip--right" role="tooltip" id="tooltip-<?php echo esc_attr($primary_role_value); ?>">
+                                    <div class="card__tooltip card__tooltip--right" role="tooltip" id="<?php echo esc_attr($role_id); ?>">
                                         <div class="card__tooltip--value">
                                             My Role: <?php echo esc_html($primary_role_value); ?>
                                         </div>
@@ -165,12 +176,15 @@ if ($portfolio_query->have_posts()) :
                                 <?php endif; ?>
                             </div>
 
+                            <!-- Main Tech Icon -->
                             <div class="card__icon-wrapper card__icon-wrapper--technology">
-                                <?php if (isset($technology_icons[$primary_technology_value])) : ?>
-                                    <svg class="card__icon card__icon--technology" aria-describedby="tooltip-<?php echo esc_attr($primary_technology_value); ?>">
+                                <?php if (isset($technology_icons[$primary_technology_value])) : 
+                                    $tech_id = make_safe_id($primary_technology_value, get_the_ID()); 
+                                ?>
+                                    <svg class="card__icon card__icon--technology" role="img" aria-labelledby="<?php echo esc_attr($tech_id); ?>">
                                         <use xlink:href="#<?php echo esc_attr($technology_icons[$primary_technology_value]); ?>"></use>
                                     </svg>
-                                    <div class="card__tooltip card__tooltip--right" role="tooltip" id="tooltip-<?php echo esc_attr($primary_technology_value); ?>">
+                                    <div class="card__tooltip card__tooltip--right" role="tooltip" id="<?php echo esc_attr($tech_id); ?>">
                                         <div class="card__tooltip--value">
                                             Main Tech: <?php echo esc_html($primary_technology_value); ?>
                                         </div>
@@ -182,14 +196,17 @@ if ($portfolio_query->have_posts()) :
                             </div>
                         </div> <!-- end card__overlay--role -->
 
+                        <!-- Language Icons -->
                         <div class="card__overlay card__overlay--languages">
                             <?php foreach (array_filter([$language1, $language2, $language3]) as $language) :
-                                if (array_key_exists($language, $language_icons)) : ?>
+                                if (array_key_exists($language, $language_icons)) : 
+                                    $language_id = make_safe_id($language, get_the_ID());                                    
+                            ?>
                                     <div class="card__icon-wrapper card__icon-wrapper--language">
-                                        <svg class="card__icon card__icon--language" aria-describedby="tooltip-<?php echo esc_attr($language); ?>">
+                                        <svg class="card__icon card__icon--language" role="img" aria-labelledby="<?php echo esc_attr($language_id); ?>">
                                             <use xlink:href="#<?php echo esc_attr($language_icons[$language]); ?>"></use>
                                         </svg>
-                                        <div class="card__tooltip card__tooltip--left" role="tooltip" id="tooltip-<?php echo esc_attr($language); ?>">
+                                        <div class="card__tooltip card__tooltip--left" role="tooltip" id="<?php echo esc_attr($language_id); ?>">
                                             Coded with <?php echo esc_html($language); ?>
                                         </div>
                                     </div>
